@@ -15,7 +15,7 @@ public class Model implements java.io.Serializable {
 	/** Function called by the controller to check consistency when updating the model.
 	 * 
 	 */
-	public void consistencyCheck() {
+	public void checkConsistency() {
 	}
 	
 	public String getState() {

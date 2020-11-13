@@ -3,7 +3,7 @@ package mvctemplate.dao;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import parallellroutineexecutor.model.Model;
+import mvctemplate.model.Model;
 
 public class NullDAO implements DAO {
 

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import parallellroutineexecutor.controller.Controller;
+import mvctemplate.controller.Controller;
 import util.parser.Command;
 import util.parser.UnknownCommandException;
 import util.parser.UserInterruptException;

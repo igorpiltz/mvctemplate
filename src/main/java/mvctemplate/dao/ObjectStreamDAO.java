@@ -2,24 +2,34 @@ package mvctemplate.dao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Paths;
 import java.util.Date;
 
-import parallellroutineexecutor.model.Model;
+import mvctemplate.model.Model;
 import util.serial.ObjectStreamUtil;
 
 
 public class ObjectStreamDAO implements DAO {
 
-	private String filename, fileprefix, filesuffix;
+	private String filename, directory, fileprefix, filesuffix;
 	private Model model = null;
 	
 	
 	public ObjectStreamDAO() throws ClassNotFoundException, IOException {
 		
-		fileprefix = "./data/game";
+		directory = "./data/";
+		fileprefix = "game";
 		filesuffix = ".dat";
 		
-		filename = fileprefix + filesuffix;
+		
+		if (Files.notExists(Paths.get(directory))) {
+			Files.createDirectory(Paths.get(directory));
+		}
+		
+		
+		filename = directory + fileprefix + filesuffix;
 		
 		try {
 			model = (Model)ObjectStreamUtil.readObject(filename);
@@ -40,7 +50,7 @@ public class ObjectStreamDAO implements DAO {
 	@Override
 	public void persist() throws FileNotFoundException, IOException {
 		ObjectStreamUtil.writeObject(filename, model);
-		ObjectStreamUtil.writeObject(fileprefix + (new Date()).getTime() + filesuffix, model);
+		ObjectStreamUtil.writeObject(directory + fileprefix + (new Date()).getTime() + filesuffix, model);
 				
 	}
 

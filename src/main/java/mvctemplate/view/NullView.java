@@ -2,7 +2,7 @@ package mvctemplate.view;
 
 import java.io.IOException;
 
-import parallellroutineexecutor.controller.Controller;
+import mvctemplate.controller.Controller;
 
 public class NullView implements View {
 

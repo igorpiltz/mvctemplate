@@ -34,7 +34,7 @@ test {
 }
 
 // Define the main class for the application
-mainClassName = 'parallellroutineexecutor.controller.Controller'
+mainClassName = 'mvctemplate.controller.Controller'
 
 
 // Gör att vi kan få input från System.in när vi kör den. 
