@@ -112,7 +112,7 @@ public class Controller {
 				
 	}
 
-	void setView(View view) {
+	public void setView(View view) {
 				
 		this.view = view;
 	}
@@ -152,5 +152,15 @@ public class Controller {
 
 	public Model getModel() {
 		return model;
+	}
+
+
+	public void add(Command command) {
+		parser.add(command);
+	}
+
+
+	public View getView() {
+		return view;
 	}
 }
