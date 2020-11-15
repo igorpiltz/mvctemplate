@@ -19,7 +19,7 @@ public interface View {
 
 	void addChoice(Command command);
 
-	void showChoices();
+	String showChoices() throws IOException;
 
 	void showStatus(Model model);
 

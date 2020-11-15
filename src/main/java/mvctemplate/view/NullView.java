@@ -50,7 +50,8 @@ public class NullView implements View {
 	}
 
 	@Override
-	public void showChoices() {
+	public String showChoices() {
+		return null;
 		
 	}
 

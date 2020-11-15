@@ -18,6 +18,7 @@ public class CommandLineView implements View {
 	
 	
 	
+	
 	@Override
 	public void printControlScheme(List<Command> list) {
 		for (int index = 0; index < list.size(); index++)
@@ -98,10 +99,19 @@ public class CommandLineView implements View {
 
 
 	@Override
-	public void showChoices() {
+	public String showChoices() throws IOException {
 		// TODO Auto-generated method stub
+		System.out.println("****** Possible Commands ******");
 		for (int index = 0; index < possibleCommands.size(); index++)
 			System.out.println(possibleCommands.get(index));
+		
+		possibleCommands.clear();
+		
+		System.out.println("Enter Command!");
+		
+		String command = buf.readLine();
+		
+		return command;
 	
 	}
 
