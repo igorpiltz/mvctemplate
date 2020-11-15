@@ -3,82 +3,25 @@ package mvctemplate.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
-import mvctemplate.controller.Controller;
+import mvctemplate.model.Model;
 import util.parser.Command;
-import util.parser.UnknownCommandException;
 import util.parser.UserInterruptException;
 
 public class CommandLineView implements View {
 	
-		
-	private Controller controller;
-	private boolean timeToQuit = false;
 	private BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+	private List<Command> possibleCommands = new ArrayList<Command>();
 
-	public CommandLineView(Controller controller) {
-		this.controller = controller;		
-	}
-
-	public void run() throws IOException {
-		
-		// Test kod
-		/*
-		 * try { controller.processInput("new routine ettan");
-		 * controller.processInput("new routine tvaan");
-		 * controller.processInput("start routine 1");
-		 * controller.processInput("add question Smurfar smurfar?");
-		 * controller.processInput("print routine 1");
-		 * 
-		 * } catch (UnknownCommand e) { System.out.println("Unknown Command: \"" +
-		 * e.getMessage() + "\"");
-		 * 
-		 * }
-		 */		
-		// Slut på testkod
-		
-		
-		
-		System.out.println("ParallellRoutineExecutor");
-		printControlScheme();
-		System.out.println(controller.getState().toString());
-		
-		
-				
-		while(true) {
-								
-			
-			String input = buf.readLine();
-			
-			try {
-				controller.processInput(input);
-			} catch (UnknownCommandException e) {
-				System.out.println("Unknown Command: \"" + e.getMessage() + "\"");
-			} catch (UserInterruptException e) {
-				System.out.println("User interrupt");
-			}
-						
-			
-			if (timeToQuit)
-				break;
-			
-			System.out.println(controller.getState().toString());
-			
-		}
-		
-		
-	}
+	
 	
 	
 	@Override
-	public void printControlScheme() {
-		
-		List<Command> list = controller.getControlScheme();
+	public void printControlScheme(List<Command> list) {
 		for (int index = 0; index < list.size(); index++)
 			System.out.println(list.get(index));
-		
-		
 	}
 
 	@Override
@@ -86,10 +29,7 @@ public class CommandLineView implements View {
 		System.out.println(actualString);
 	}
 
-	@Override
-	public void signalQuit() {
-		timeToQuit = true;
-	}
+	
 
 	@Override
 	public String askQuestion(Object question) throws IOException, UserInterruptException {
@@ -133,6 +73,44 @@ public class CommandLineView implements View {
 				return false;
 		} while(true);
 		
+	}
+
+
+
+
+	@Override
+	public void startMessage() {
+	
+		System.out.println("CommandLineView");
+		
+	}
+
+
+
+
+	@Override
+	public void addChoice(Command command) {
+		possibleCommands.add(command);
+		
+	}
+
+
+
+
+	@Override
+	public void showChoices() {
+		// TODO Auto-generated method stub
+		for (int index = 0; index < possibleCommands.size(); index++)
+			System.out.println(possibleCommands.get(index));
+	
+	}
+
+
+
+
+	@Override
+	public void showStatus(Model model) {
+		System.out.println(model);
 	}
 	
 }

@@ -1,8 +1,5 @@
 package mvctemplate.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Model implements java.io.Serializable {
 	
 	/**
