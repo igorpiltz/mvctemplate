@@ -9,6 +9,7 @@ import mvctemplate.dao.DAO;
 import mvctemplate.dao.ObjectStreamDAO;
 import mvctemplate.model.Model;
 import mvctemplate.view.CommandLineView;
+import mvctemplate.view.SwingView;
 import mvctemplate.view.View;
 import util.parser.Callable;
 import util.parser.Command;
@@ -80,7 +81,7 @@ public class Controller {
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
 		
 		Controller controller = null;
-		View view = new CommandLineView();
+		View view = new SwingView();
 		
 		controller = new Controller(new ObjectStreamDAO(), view);
 			
