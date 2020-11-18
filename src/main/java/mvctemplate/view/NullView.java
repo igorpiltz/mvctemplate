@@ -66,4 +66,10 @@ public class NullView implements View {
 		
 	}
 
+	@Override
+	public void initialize() {
+		
+		
+	}
+
 }

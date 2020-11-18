@@ -122,5 +122,11 @@ public class CommandLineView implements View {
 	public void showStatus(Model model) {
 		System.out.println(model);
 	}
+
+	@Override
+	public void initialize() {
+		
+		
+	}
 	
 }

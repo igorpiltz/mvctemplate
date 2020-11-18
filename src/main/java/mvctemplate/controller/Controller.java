@@ -37,8 +37,6 @@ public class Controller {
 		
 		parser = new CommandLineParser();
 		
-		// Lite variabler för kommandona att använda
-		Command command = null;
 		
 		
 				
@@ -47,35 +45,45 @@ public class Controller {
 		
 		// help
 		// ett hjälp-kommando som printar alla kommandon en gång till
-		command = new Command();
-		command.add(new StringToken("help"));
-		command.addCallable(new Callable() {
-			public void exec(List<Token> tokens) {
-				help(tokens);
-			}});
-		parser.add(command);
 		
-						
-		// avsluta
-		command = new Command();
-		command.add(new StringToken("exit"));
-		command.add(new StringToken("program"));
-		command.addCallable(new Callable() {
-			public void exec(List<Token> tokens) {
-				quit(tokens);
-			}});
-		parser.add(command);
+		parser.add(new Help());
+				
+		
+		parser.add(new ExitProgram());
 	}
 	
+	
+	
+	public class Help extends Command implements Callable {
+		public Help() {
+			add(new StringToken("help"));
+			
+			addCallable(this);
+			
+		}
+		
+		public void exec(List<Token> tokens) {
+			view.printControlScheme(parser.getCommandList());
+		}
+	}
 
-	protected void help(List<Token> tokens) {
-		view.printControlScheme(parser.getCommandList());
+	
+	public class ExitProgram extends Command implements Callable {
+		public ExitProgram() {
+			add(new StringToken("exit"));
+			add(new StringToken("program"));
+			
+			addCallable(this);
+			
+		}
+		
+		public void exec(List<Token> tokens) {
+			System.exit(0);
+		}
 	}
 
 
-	protected void quit(List<Token> tokens) {
-		System.exit(0);
-	}
+	
 
 
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
@@ -85,7 +93,7 @@ public class Controller {
 		
 		controller = new Controller(new ObjectStreamDAO(), view);
 			
-		
+		view.initialize();
 		controller.run();
 		
 				
@@ -104,17 +112,16 @@ public class Controller {
 								
 			
 			String input = null;
+			
+			view.addChoice(new Help());
+			view.addChoice(new ExitProgram());
+			
 			try {
-				input = view.askQuestion("What command?");
+				input = view.showChoices();
 			} catch (IOException e1) {
-				e1.printStackTrace();
-				System.exit(1);
-			} catch (UserInterruptException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
-			if (input == null)
-				continue;
 				
 			try {
 				processInput(input);
