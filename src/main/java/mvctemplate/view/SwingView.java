@@ -115,7 +115,7 @@ public class SwingView extends javax.swing.JFrame implements View {
 
 	@Override
 	public void startMessage() {
-
+		
 	}
 
 	@Override
