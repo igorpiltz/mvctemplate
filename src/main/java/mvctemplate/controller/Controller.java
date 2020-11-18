@@ -191,4 +191,10 @@ public class Controller {
 	public DAO getDAO() {
 		return dao;
 	}
+
+	public void setModel(Model model) {
+		// TODO Auto-generated method stub
+		this.model = model;
+		dao.setModel(model);
+	}
 }
