@@ -23,11 +23,7 @@ public class Model implements java.io.Serializable {
 	}
 	
 	public String getState() {
-		
-		StringBuffer buf = new StringBuffer();
-
-		
-		return buf.toString();
+		return toString();
 	}
 
 

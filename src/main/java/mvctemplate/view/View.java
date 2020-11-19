@@ -28,7 +28,7 @@ import util.parser.UserInterruptException;
 public interface View {
 
 	/**
-	 * Outputs a message to the user. 
+	 * Outputs a message to the user. Might require actual interaction from user to dismiss. 
 	 * 
 	 * @param actualString
 	 */
@@ -56,6 +56,12 @@ public interface View {
 
 	String showChoices() throws IOException;
 
+	/**
+	 * Shows the state of the model. Shouldn't require input from user to dismiss. 
+	 * Defaults to calling getState() on the model. 
+	 * 
+	 * @param model
+	 */
 	void showStatus(Model model);
 
 	

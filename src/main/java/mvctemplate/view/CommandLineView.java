@@ -120,7 +120,7 @@ public class CommandLineView implements View {
 
 	@Override
 	public void showStatus(Model model) {
-		System.out.println(model);
+		System.out.println(model.getState());
 	}
 
 	@Override
